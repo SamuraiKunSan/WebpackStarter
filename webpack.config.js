@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const DashboardPlugin = require('webpack-dashboard/plugin')
 const path = require('path')
 
 module.exports = {
@@ -6,7 +7,7 @@ module.exports = {
     scripts: './src/index.js'
   },
   output: {
-    filename: '[name].js',
+    filename: 'js/[name].js',
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist'
   },
@@ -16,20 +17,38 @@ module.exports = {
       loader: 'babel-loader',
       exclude: '/node_modules/'
     },
-//    {
-//      test: /\.css$/,
-//      use: [
-//        MiniCssExtractPlugin.loader
-//      ]
-//    }
-  ]
+    {
+      test: /\.s[ac]ss$/i,
+      use: [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: 'css-loader',
+          options: {
+            sourceMap: true,
+          },
+        },
+//        {
+//          loader: 'postcss-loader',
+//          options: { sourceMap: true, config: { path: 'src/js/postcss.config.js' } } 
+//        },
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true,
+          },
+        },
+      ],
+    },
+  ],
   },
   devServer: {
     overlay: true
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-    })
+      filename: "css/[name].css",
+      chunkFilename: 'css/[id].css',
+    }),
+    new DashboardPlugin()
   ],
 }

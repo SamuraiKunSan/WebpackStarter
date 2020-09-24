@@ -5,12 +5,18 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "dist": "webpack --mode development",
+    "start": "webpack-dashboard webpack-dev-server --history-api-fallback --inline --progress"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SamuraiKunSan/WebpackStarter.git"
   },
+  "browserslist": [
+    ">1%",
+    "last 3 version"
+  ],
   "author": "",
   "license": "MIT",
   "bugs": {
@@ -28,11 +34,14 @@
     "mini-css-extract-plugin": "^0.11.2",
     "node-sass": "^4.14.1",
     "path": "^0.12.7",
+    "postcss": "^8.0.9",
     "postcss-loader": "^4.0.2",
+    "sass": "^1.26.11",
     "sass-loader": "^10.0.2",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
+    "webpack-dashboard": "^3.2.1",
     "webpack-dev-server": "^3.11.0"
   }
 }
